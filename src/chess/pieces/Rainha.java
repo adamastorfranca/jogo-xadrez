@@ -1,4 +1,4 @@
-package chess.pecas;
+package chess.pieces;
 
 public class Rainha {
 
