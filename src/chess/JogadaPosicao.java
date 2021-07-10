@@ -1,6 +1,6 @@
 package chess;
 
-import boardgame.Posicao;
+import boardgame.Position;
 
 public class JogadaPosicao {
 	
@@ -9,7 +9,7 @@ public class JogadaPosicao {
 	
 	public JogadaPosicao(char coluna, int linha) {
 		if (linha < 1 || linha > 8 || coluna < 'a' || coluna > 'h') {
-			throw new XadrezException("Erro na jogada: valores válidos são de a1 a h8");
+			throw new ChessException("Erro na jogada: valores válidos são de a1 a h8");
 		}
 		this.linha = linha;
 		this.coluna = coluna;
@@ -23,11 +23,11 @@ public class JogadaPosicao {
 		return coluna;
 	}
 	
-	protected Posicao toPosicao() {
-		return new Posicao(8 - linha, coluna - 'a');
+	protected Position toPosicao() {
+		return new Position(8 - linha, coluna - 'a');
 	}
 	
-	protected static JogadaPosicao fromPosicao(Posicao posicao) {
+	protected static JogadaPosicao fromPosicao(Position posicao) {
 		return new JogadaPosicao((char)('a' - posicao.getColuna()), 8 - posicao.getLinha());
 	}
 	
