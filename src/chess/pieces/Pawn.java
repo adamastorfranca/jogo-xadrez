@@ -38,9 +38,7 @@ public class Pawn extends ChessPiece {
 			p.setValues(position.getRow() - 1, position.getColumn() + 1);
 			if (getBoard().positionExists(p) && isThereOpponentPiece(p)) {
 				mat[p.getRow()][p.getColumn()] = true;
-			}	
-			
-			// #specialmove en passant white
+			}				
 			if (position.getRow() == 3) {
 				Position left = new Position(position.getRow(), position.getColumn() - 1);
 				if (getBoard().positionExists(left) && isThereOpponentPiece(left) && getBoard().piece(left) == chessMatch.getEnPassantVulnerable()) {
@@ -51,8 +49,7 @@ public class Pawn extends ChessPiece {
 					mat[right.getRow() - 1][right.getColumn()] = true;
 				}
 			}
-		}
-		else {
+		} else {
 			p.setValues(position.getRow() + 1, position.getColumn());
 			if (getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) {
 				mat[p.getRow()][p.getColumn()] = true;
@@ -70,8 +67,6 @@ public class Pawn extends ChessPiece {
 			if (getBoard().positionExists(p) && isThereOpponentPiece(p)) {
 				mat[p.getRow()][p.getColumn()] = true;
 			}
-			
-			// #specialmove en passant black
 			if (position.getRow() == 4) {
 				Position left = new Position(position.getRow(), position.getColumn() - 1);
 				if (getBoard().positionExists(left) && isThereOpponentPiece(left) && getBoard().piece(left) == chessMatch.getEnPassantVulnerable()) {
@@ -89,6 +84,5 @@ public class Pawn extends ChessPiece {
 	@Override
 	public String toString() {
 		return "P";
-	}
-	
+	}	
 }

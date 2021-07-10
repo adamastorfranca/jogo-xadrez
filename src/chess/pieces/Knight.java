@@ -66,7 +66,6 @@ public class Knight extends ChessPiece {
 		if (getBoard().positionExists(p) && canMove(p)) {
 			mat[p.getRow()][p.getColumn()] = true;
 		}
-
 		return mat;
 	}
 }
