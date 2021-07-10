@@ -1,13 +1,14 @@
 package application;
 
-import boardgame.Posicao;
-import boardgame.Tabuleiro;
+import chess.Partida;
 
 public class Programa {
 	
 	public static void main(String[] args) {
 		
-		Tabuleiro tabuleiro = new Tabuleiro(8, 8);
+		Partida partida = new Partida();
+		Visualizacao.exibirNoTabuleiro(partida.getPecas());
+		
 	}
 
 }
