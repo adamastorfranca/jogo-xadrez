@@ -1,5 +1,6 @@
 package chess;
 
+import boardgame.Peca;
 import boardgame.Posicao;
 import boardgame.Tabuleiro;
 import chess.pecas.Rei;
@@ -24,15 +25,36 @@ public class Partida {
 		return matriz;
 	}
 	
+	public PecaDeXadrez executaMovimento(JogadaPosicao posicaoInicial, JogadaPosicao posicaoFinal) {
+		Posicao inicial = posicaoInicial.toPosicao();
+		Posicao finall = posicaoFinal.toPosicao();
+		validacaoPosicaoInicial(inicial);
+		Peca obterPosicao = movePeca(inicial, finall);
+		return (PecaDeXadrez) obterPosicao;
+	}
+	
+	private Peca movePeca(Posicao inicial, Posicao finall) {
+		Peca p = tabuleiro.removePeca(inicial);
+		Peca pecaCapturada = tabuleiro.removePeca(finall);
+		tabuleiro.colocarPeca(p, finall);
+		return pecaCapturada;
+	}
+	
+	private void validacaoPosicaoInicial(Posicao posicao) {
+		if (!tabuleiro.temUmaPeca(posicao)) {
+			throw new XadrezException("Não existe peça na posição de origem");
+		}
+	}
+	
 	private void colocarNovaPeca (char coluna, int linha, PecaDeXadrez peca) {
 		tabuleiro.colocarPeca(peca, new JogadaPosicao(coluna, linha).toPosicao());
 	}
 	
 	private void configuracaoInicial() {
-		colocarNovaPeca('e', 1, new Rei(tabuleiro, Cor.BRANCO));
-		colocarNovaPeca('a', 1, new Torre(tabuleiro, Cor.BRANCO));
+		colocarNovaPeca('e', 1, new Rei(tabuleiro, Cor.BRANCA));
+		colocarNovaPeca('a', 1, new Torre(tabuleiro, Cor.BRANCA));
 		
-		colocarNovaPeca('e', 8, new Rei(tabuleiro, Cor.PRETO));
+		colocarNovaPeca('e', 8, new Rei(tabuleiro, Cor.PRETA));
 		
 	}
 }
